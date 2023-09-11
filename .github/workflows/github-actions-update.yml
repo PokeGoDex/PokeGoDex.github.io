@@ -1,0 +1,31 @@
+name: Update application
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [workflow_dispatch]
+env:
+  SOURCES_PATH: .sources
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v3
+        with:
+          repository: rybick/pogolitics
+          path: './.sources'
+      - name: Build sources
+        run: >
+             cd "${{ github.workspace }}/$SOURCES_PATH" &&
+             ls && 
+             ./gradlew clean build &&
+             ls
+      - name: Copy built application to main directory
+        run: >
+             ls && 
+             rm -r ./* &&
+             git checkout README.md && echo "#We don't want to lose README" &&
+             ls && 
+             ls ${{ github.workspace }}/$SOURCES_PATH/ &&
+             cp -r ${{ github.workspace }}/$SOURCES_PATH/build/distributions/* ./
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: update version (github actions)
