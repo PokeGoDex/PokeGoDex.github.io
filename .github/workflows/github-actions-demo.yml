@@ -17,15 +17,14 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Checkout pogolitics
-        uses:  actions/checkout@v3
+        uses: actions/checkout@v3
         with:
           repository: rybick/pogolitics
           path: './build'
       - name: Build sources
         run: cd "${{ github.workspace }}/build" && |
              ls && |
-             ./gradlew clean build && |
-             ls
+             ./gradlew clean build
       - name: Copy built application
         run: ls | 
              rm -r ./* && |
