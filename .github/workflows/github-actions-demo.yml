@@ -16,3 +16,14 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Checkout pogolitics
+        uses:  actions/checkout@v3
+        with:
+          repository: rybick/pogolitics
+          path: './build'
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: List files in the pogolitics repository
+        run: |
+          ls ${{ github.workspace }}/build
