@@ -1,5 +1,5 @@
 name: Update application
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: Update application
 on: [workflow_dispatch]
 env:
   SOURCES_PATH: .sources
@@ -17,13 +17,13 @@ jobs:
              cd "${{ github.workspace }}/$SOURCES_PATH" &&
              ls && 
              ./gradlew clean build &&
-             ls
+             ls -la
       - name: Copy built application to main directory
         run: >
-             ls && 
+             ls -la &&
              rm -r ./* &&
              git checkout README.md && echo "#We don't want to lose README" &&
-             ls && 
+             ls &&
              ls ${{ github.workspace }}/$SOURCES_PATH/ &&
              cp -r ${{ github.workspace }}/$SOURCES_PATH/build/distributions/* ./
       - uses: EndBug/add-and-commit@v9
