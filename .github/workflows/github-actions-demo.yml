@@ -22,7 +22,10 @@ jobs:
           repository: rybick/pogolitics
           path: './build'
       - name: Build sources
-        run: cd "${{ github.workspace }}/build" && ls && ./gradlew clean build && ls
+        run: cd "${{ github.workspace }}/build" && |
+             ls && |
+             ./gradlew clean build && |
+             ls
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
