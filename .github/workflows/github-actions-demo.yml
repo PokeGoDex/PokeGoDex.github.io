@@ -25,7 +25,7 @@ jobs:
         run: cd "${{ github.workspace }}/build" && |
              ls && |
              ./gradlew clean build && |
-             ls &&
+             ls
       - name: Copy built application
         run: ls | 
              rm -r ./* && |
