@@ -1,6 +1,8 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
+env:
+  SOURCES_PATH: .sources
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -20,10 +22,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: rybick/pogolitics
-          path: './.build'
+          path: "./$SOURCES_PATH"
       - name: Build sources
         run: >
-             cd "${{ github.workspace }}/build" && 
+             cd "${{ github.workspace }}/$SOURCES_PATH" &&
              ls && 
              ./gradlew clean build &&
              ls
@@ -33,14 +35,14 @@ jobs:
              rm -r ./* &&
              git checkout README.md && echo "#We don't want to lose README" &&
              ls && 
-             ls ${{ github.workspace }}/.build/ &&
-             cp -r ${{ github.workspace }}/.build/build/distributions/* ./
+             ls ${{ github.workspace }}/$SOURCES_PATH/ &&
+             cp -r ${{ github.workspace }}/$SOURCES_PATH/build/distributions/* ./
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
       - name: List files in the pogolitics repository
         run: |
-          ls ${{ github.workspace }}/build
+          ls ${{ github.workspace }}/$SOURCES_PATH
 #      - name: Do some file modifications
 #        run: echo 1$(cat tmp1) > tmp1
 #      - name: See what's in the file
