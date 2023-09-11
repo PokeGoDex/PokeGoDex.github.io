@@ -25,20 +25,26 @@ jobs:
         run: cd "${{ github.workspace }}/build" && |
              ls && |
              ./gradlew clean build && |
-             ls
+             ls &&
+      - name: Copy built application
+        run: ls | 
+             rm -r ./* && |
+             git checkout README.md && | # We don't want to lose README
+             ls && |
+             cp -r ${{ github.workspace }}/build/build/distributions/* ./
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
       - name: List files in the pogolitics repository
         run: |
           ls ${{ github.workspace }}/build
-      - name: Do some file modifications
-        run: echo 1$(cat tmp1) > tmp1
-      - name: See what's in the file
-        run: cat tmp1
-      - run: git status
-      - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
-        with:
-          message: update version
+#      - name: Do some file modifications
+#        run: echo 1$(cat tmp1) > tmp1
+#      - name: See what's in the file
+#        run: cat tmp1
+#      - run: git status
+#      - uses: EndBug/add-and-commit@v9
+#        with:
+#          message: update version
       - run: git status
       - run: git log -2
