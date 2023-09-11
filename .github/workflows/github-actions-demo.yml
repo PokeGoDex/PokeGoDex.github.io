@@ -21,6 +21,10 @@ jobs:
         with:
           repository: rybick/pogolitics
           path: './build'
+      - name: Build pogolitics
+          - run: |
+            cd "${{ github.workspace }}./build"
+            ./gradlew clean build
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
@@ -28,7 +32,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}/build
       - name: Do some file modifications
-        run: echo 1`cat tmp1` > tmp1
+        run: echo 1$(cat tmp1) > tmp1
       - name: See what's in the file
         run: cat tmp1
       - run: git status
