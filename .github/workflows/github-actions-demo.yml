@@ -30,8 +30,8 @@ jobs:
       - name: Copy built application
         run: >
              ls  
-             rm -r ./* && 
-             git checkout README.md && # We don't want to lose README
+             rm -r ./* &&
+             git checkout README.md && echo "#We don't want to lose README" &&
              ls && 
              cp -r ${{ github.workspace }}/build/build/distributions/* ./
       - name: List files in the repository
