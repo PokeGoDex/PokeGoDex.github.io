@@ -23,6 +23,9 @@ jobs:
         with:
           repository: rybick/pogolitics
           path: "./$SOURCES_PATH"
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
       - name: List files in the pogolitics repository
         run: |
           ls ${{ github.workspace }}/$SOURCES_PATH
