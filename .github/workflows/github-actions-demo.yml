@@ -22,14 +22,17 @@ jobs:
           repository: rybick/pogolitics
           path: './build'
       - name: Build sources
-        run: cd "${{ github.workspace }}/build" && |
-             ls && |
-             ./gradlew clean build
+        run: >
+             cd "${{ github.workspace }}/build" && 
+             ls && 
+             ./gradlew clean build &&
+             ls
       - name: Copy built application
-        run: ls | 
-             rm -r ./* && |
-             git checkout README.md && | # We don't want to lose README
-             ls && |
+        run: >
+             ls  
+             rm -r ./* && 
+             git checkout README.md && # We don't want to lose README
+             ls && 
              cp -r ${{ github.workspace }}/build/build/distributions/* ./
       - name: List files in the repository
         run: |
