@@ -50,9 +50,9 @@ jobs:
 #        run: echo 1$(cat tmp1) > tmp1
 #      - name: See what's in the file
 #        run: cat tmp1
-#      - run: git status
-#      - uses: EndBug/add-and-commit@v9
-#        with:
-#          message: update version
+      - run: git status
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: update version (github actions)
       - run: git status
       - run: git log -2
