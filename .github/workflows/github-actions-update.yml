@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 env:
   SOURCES_PATH: .sources
 jobs:
-  Explore-GitHub-Actions:
+  Update-Application:
     runs-on: ubuntu-latest
     steps:
       - name: Check out application
